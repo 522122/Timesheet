@@ -1,0 +1,9 @@
+{
+    "outputFileName": "Timesheet.csv",
+    "startHour": 9,
+    "startMin": 30,
+    "hours": 8,
+    "bookableResource": "Your Name",
+    "role": "Developer",
+    "project": "INFINICA Document Designer"
+}
