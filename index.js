@@ -1,19 +1,6 @@
 var moment = require('moment');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const conf = require(__dirname + '/conf.json')
-const csvWriter = createCsvWriter({
-  path: conf.outputFileName,
-  header: [
-    {id: 'start', title: 'Start'},
-    {id: 'end', title: 'End'},
-    {id: 'duration', title: 'Duration'},
-    {id: 'dauerInStunden', title: 'Dauer in Stunden'},
-    {id: 'project', title: 'Project'},
-    {id: 'bookableResource', title: 'Bookable Resource'},
-    {id: 'role', title: 'Role'},
-    {id: 'externalComments', title: 'External Comments'}
-  ]
-});
 
 const FORMAT = 'DD/MM/YYYY HH:mm:ss'
 const argv = process.argv.slice(2)
@@ -29,6 +16,26 @@ if (!moment({year, month}).isValid()) {
     console.log('\nmodify conf.json to your needs')
     return
 }
+
+const addMYToFilename = (filename, m, y) => {
+  const arr = filename.split('.')
+  const ext = arr.pop()
+  return `${arr.join('')}_${y}_${m + 1}.${ext}`
+}
+
+const csvWriter = createCsvWriter({
+  path: addMYToFilename(conf.outputFileName, month, year),
+  header: [
+    {id: 'start', title: 'Start'},
+    {id: 'end', title: 'End'},
+    {id: 'duration', title: 'Duration'},
+    {id: 'dauerInStunden', title: 'Dauer in Stunden'},
+    {id: 'project', title: 'Project'},
+    {id: 'bookableResource', title: 'Bookable Resource'},
+    {id: 'role', title: 'Role'},
+    {id: 'externalComments', title: 'External Comments'}
+  ]
+});
 
 const data = []
 const current = moment({ year, month, day: 1, hour: conf.startHour, minute: conf.startMin, second: 0, millisecond: 0})
