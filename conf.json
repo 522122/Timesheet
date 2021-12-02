@@ -1,9 +1,21 @@
 {
-    "outputFileName": "Timesheet.csv",
-    "startHour": 9,
-    "startMin": 30,
-    "hours": 8,
-    "bookableResource": "Your Name",
-    "role": "Developer",
-    "project": "INFINICA Document Designer"
+  "outputFileName": "Timesheet.csv",
+  "startHour": 9,
+  "startMin": 30,
+  "hours": 8,
+  "header": [
+    { "id": "start", "title": "Start" },
+    { "id": "end", "title": "End" },
+    { "id": "duration", "title": "Duration" },
+    { "id": "dauerInStunden", "title": "Dauer in Stunden" },
+    { "id": "project", "title": "Project" },
+    { "id": "bookableResource", "title": "Bookable Resource" },
+    { "id": "role", "title": "Role" },
+    { "id": "externalComments", "title": "External Comments" }
+  ],
+  "prefilledValues": {
+    "project": "INFINICA Document Designer",
+    "bookableResource": "YOUR NAME",
+    "role": "Developer"
+  }
 }

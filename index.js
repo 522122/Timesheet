@@ -25,16 +25,7 @@ const addMYToFilename = (filename, m, y) => {
 
 const csvWriter = createCsvWriter({
   path: addMYToFilename(conf.outputFileName, month, year),
-  header: [
-    {id: 'start', title: 'Start'},
-    {id: 'end', title: 'End'},
-    {id: 'duration', title: 'Duration'},
-    {id: 'dauerInStunden', title: 'Dauer in Stunden'},
-    {id: 'project', title: 'Project'},
-    {id: 'bookableResource', title: 'Bookable Resource'},
-    {id: 'role', title: 'Role'},
-    {id: 'externalComments', title: 'External Comments'}
-  ]
+  header: [...conf.header]
 });
 
 const data = []
@@ -53,14 +44,11 @@ while (true) {
     const dayEnd = moment(current).add(conf.hours * 60, 'minutes')
 
     data.push({
+        ...conf.prefilledValues,
         start: current.format(FORMAT),
         end: dayEnd.format(FORMAT),
         duration: dayEnd.diff(current, 'minutes'),
         dauerInStunden: (dayEnd.diff(current, 'minutes') / 60).toLocaleString('de-AT'),
-        project: conf.project,
-        bookableResource: conf.bookableResource,
-        role: conf.role,
-        externalComments: ''
     })
 
     current.add(24, 'hours')
