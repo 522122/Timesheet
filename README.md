@@ -1,5 +1,7 @@
 # Timesheet
 
+Timesheet generator for dynamics
+
 ```JavaScript
 console.log('Usage: node index.js month [year]')
 console.log('* month: 1-12')
